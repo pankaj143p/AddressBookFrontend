@@ -3,7 +3,9 @@ import { PersondetailsComponent } from '../persondetails/persondetails.component
 
 @Component({
   selector: 'app-dashboard',
+  imports: [],
   template : `
+  <app-persondetails></app-persondetails>
   `,
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

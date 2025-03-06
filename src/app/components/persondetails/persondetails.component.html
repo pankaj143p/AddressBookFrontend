@@ -15,15 +15,19 @@
                     <li>Phone Number</li>
                 </ul>
             </div>
-              <div class="mx-8 mt-4 px-8  border-2  py-2 bg-white border-gray-300 rounded-md">
+            <div *ngFor="let person of persons">
+            <div class="mx-8 mt-4 px-8 border-2 py-2 bg-white border-gray-300 rounded-md">
                 <ul class="text-gray-600 font-semibold list-disc list-inside flex gap-28" style="list-style-type:none;">
-                    <li>Fullname</li>
-                    <li class="px-4 pr-72">Address</li>
-                    <li>City</li>
-                    <li>State</li>
-                    <li>Zip Code</li>
-                    <li>Phone Number</li>
+                   
+                      <li>{{ person.name }}</li>
+                      <li class="pr-12">{{ person.address }}</li>
+                      <li class="">{{ person.city }}</li>
+                      <li>{{ person.state }}</li>
+                      <li>{{ person.zipCode }}</li>
+                      <li>{{ person.phoneNumber }}</li>
+                   
                 </ul>
+              </div>
             </div>
         </div>
     </div>
