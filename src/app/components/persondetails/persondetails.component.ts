@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, EventEmitter, NgModule, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { AddressbookformComponent } from '../addressbookform/addressbookform.component';
@@ -21,9 +21,16 @@ interface Person {
 
 
 export class PersondetailsComponent {
+
+  @Output() closeEvent = new EventEmitter<void>();
+    
+      // close() {
+       
+      // }
   showForm: boolean = false;
   toggleForm() {
     this.showForm = !this.showForm;
+    this.closeEvent.emit();
   }
   entries: any[] = [];
   errMsg: string = '';
@@ -43,12 +50,4 @@ export class PersondetailsComponent {
       }
     )
   }
-  // addEntry(entry: Person) {
-  //   this.apiService.addEntry(entry).subscribe((data:any)=>{
-  //     this.entries.push(data);
-  //     console.log("Data  ",data);
-      
-  //   })
-  // }
-  
 }

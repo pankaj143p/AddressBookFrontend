@@ -12,7 +12,7 @@ import { AddressbookformComponent } from './components/addressbookform/addressbo
   template : `
   <app-dashboard></app-dashboard>
   <app-persondetails></app-persondetails>
-  <app-addressbookform></app-addressbookform>
+  <!-- <app-addressbookform></app-addressbookform> -->
   <!-- <h1 class="text-3xl font-bold underline">Hello World</h1> -->
   `,
   // templateUrl: './app.component.html',
