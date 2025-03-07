@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { PersondetailsComponent } from '../persondetails/persondetails.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [PersondetailsComponent],
+  imports: [],
   template : `
   <app-persondetails></app-persondetails>
+  <app-addressbookform></app-addressbookform>
   `,
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

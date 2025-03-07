@@ -14,7 +14,7 @@ interface Person {
 @Component({
   selector: 'app-persondetails',
   standalone: true,  
-  imports: [CommonModule,AddressbookformComponent],
+  imports: [CommonModule, AddressbookformComponent],
   templateUrl: './persondetails.component.html',
   styleUrl: './persondetails.component.scss'
 })
@@ -30,7 +30,7 @@ export class PersondetailsComponent {
   showForm: boolean = false;
   toggleForm() {
     this.showForm = !this.showForm;
-    this.closeEvent.emit();
+    // this.closeEvent.emit();
   }
   entries: any[] = [];
   errMsg: string = '';
@@ -49,5 +49,8 @@ export class PersondetailsComponent {
         
       }
     )
+  }
+  handleCloseForm() {
+    this.showForm = false;  // Close the form
   }
 }

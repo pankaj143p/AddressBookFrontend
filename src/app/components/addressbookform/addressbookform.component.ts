@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormsModule, NgModel } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCoffee, faXmark, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface Person {
   fullName: string;
@@ -20,7 +20,7 @@ interface Person {
   styleUrl: './addressbookform.component.scss'
 })
 export class AddressbookformComponent {
-  faCoffee = faCircleXmark;
+  faXmark = faCircleXmark;
   // entries: any[] = [];
   errMsg: string = '';
   person: any [] =[];
@@ -45,4 +45,10 @@ export class AddressbookformComponent {
       
     })
   }
+  @Output() closeEvent = new EventEmitter<void>();
+  handleCloseForm() {
+    // Emit the event to close the form
+    this.closeEvent.emit();
+  }
+  
 }
