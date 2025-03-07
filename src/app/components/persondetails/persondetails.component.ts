@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
-import { ApiService } from '../../api.service';
+import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { AddressbookformComponent } from '../addressbookform/addressbookform.component';
 interface Person {
   fullName: string;
   address: string;
@@ -13,17 +14,20 @@ interface Person {
 @Component({
   selector: 'app-persondetails',
   standalone: true,  
-  imports: [CommonModule],
+  imports: [CommonModule,AddressbookformComponent],
   templateUrl: './persondetails.component.html',
   styleUrl: './persondetails.component.scss'
 })
 
 
 export class PersondetailsComponent {
-  
+  showForm: boolean = false;
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
   entries: any[] = [];
   errMsg: string = '';
-persons: any;
+  persons: any;
   constructor(private apiService: ApiService) { }
   ngOnInit() : void {
     this.apiService.getEntries().subscribe(
@@ -39,5 +43,12 @@ persons: any;
       }
     )
   }
+  // addEntry(entry: Person) {
+  //   this.apiService.addEntry(entry).subscribe((data:any)=>{
+  //     this.entries.push(data);
+  //     console.log("Data  ",data);
+      
+  //   })
+  // }
   
 }

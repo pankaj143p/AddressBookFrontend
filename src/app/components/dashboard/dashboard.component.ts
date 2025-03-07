@@ -3,7 +3,7 @@ import { PersondetailsComponent } from '../persondetails/persondetails.component
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [PersondetailsComponent],
   template : `
   <app-persondetails></app-persondetails>
   `,
@@ -11,5 +11,6 @@ import { PersondetailsComponent } from '../persondetails/persondetails.component
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+  
     logo='addressbooklogo.png';
 }
