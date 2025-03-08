@@ -2,6 +2,8 @@ import { Component, EventEmitter, NgModule, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
 import { AddressbookformComponent } from '../addressbookform/addressbookform.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 interface Person {
   fullName: string;
   address: string;
@@ -14,14 +16,15 @@ interface Person {
 @Component({
   selector: 'app-persondetails',
   standalone: true,  
-  imports: [CommonModule, AddressbookformComponent],
+  imports: [CommonModule, AddressbookformComponent,FontAwesomeModule],
   templateUrl: './persondetails.component.html',
   styleUrl: './persondetails.component.scss'
 })
 
 
 export class PersondetailsComponent {
-
+  trash = faTrash;
+  edit = faPenToSquare;
   @Output() closeEvent = new EventEmitter<void>();
     
       // close() {
