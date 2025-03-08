@@ -28,7 +28,9 @@ export class ApiService {
     throw new Error('Method not implemented.');
   }
   private getUrl = "http://localhost:8080/api/addressbook/all"; 
-  private postUrl = "http://localhost:8080/api/addressbook/add";  
+  private postUrl = "http://localhost:8080/api/addressbook/add"; 
+  private deleteUrl="http://localhost:8080/api/addressbook/delete"; 
+  private putUrl="http://localhost:8080/api/addressbook/update";
   constructor(private http: HttpClient) {}
 
   // Fetch the entries from the API
@@ -40,6 +42,17 @@ export class ApiService {
   addEntry(entry: any): Observable<any> {
     return this.http.post<any>(this.postUrl, entry);
   }
+   
+  // delete an entry from the API
+  deleteEntry(id: number): Observable<any> {
+    return this.http.delete<any>(this.deleteUrl + '/' + id);
+  }
+
+  // Update an existing entry in the API by id
+  updateEntry(id: number, entry: any): Observable<any> {
+    return this.http.put<any>(this.putUrl + '/' + id, entry);
+  }
+  
 }
 
 
