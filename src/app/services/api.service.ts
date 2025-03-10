@@ -18,7 +18,8 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
+import { Person } from '../components/persondetails/person.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,30 +28,36 @@ export class ApiService {
   subscribe(arg0: (data: any) => void) {
     throw new Error('Method not implemented.');
   }
-  private getUrl = "http://localhost:8080/api/addressbook/all"; 
-  private postUrl = "http://localhost:8080/api/addressbook/add"; 
-  private deleteUrl="http://localhost:8080/api/addressbook/delete"; 
-  private putUrl="http://localhost:8080/api/addressbook/update";
+  private Url = "http://localhost:8080/api/addressbook"; 
   constructor(private http: HttpClient) {}
 
   // Fetch the entries from the API
   getEntries(): Observable<any[]> {
-    return this.http.get<any[]>(this.getUrl);
+    return this.http.get<any[]>(this.Url+'/all');
   }
 
   // Add a new entry to the API
   addEntry(entry: any): Observable<any> {
-    return this.http.post<any>(this.postUrl, entry);
+    return this.http.post<any>(this.Url+'/add', entry);
   }
+ 
    
   // delete an entry from the API
-  deleteEntry(id: number): Observable<any> {
-    return this.http.delete<any>(this.deleteUrl + '/' + id);
+  // deleteEntry(id: number): Observable<any> {
+  //   return this.http.delete<any>(this.Url + '/delete/' + id);
+  // }
+  deleteEntry(person: Person) {
+    // If the API expects ID to be part of the URL
+    return this.http.delete(`http://localhost:8080/api/addressbook/delete/${person.id}`).pipe(
+      catchError((err) => {
+        console.error('Error deleting data:', err);
+        throw err;
+      })
+    );
   }
-
   // Update an existing entry in the API by id
   updateEntry(id: number, entry: any): Observable<any> {
-    return this.http.put<any>(this.putUrl + '/' + id, entry);
+    return this.http.put<any>(this.Url + '/update/' + id, entry);
   }
   
 }

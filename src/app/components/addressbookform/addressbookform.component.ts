@@ -50,5 +50,8 @@ export class AddressbookformComponent {
     // Emit the event to close the form
     this.closeEvent.emit();
   }
+  refresh(): void {
+    window.location.reload();
+  }
   
 }

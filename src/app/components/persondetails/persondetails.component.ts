@@ -63,10 +63,21 @@ export class PersondetailsComponent {
      });
     }
     deleteEntry(person: Person) {
-      this.apiService.deleteEntry(person.id);
-      this.personMap.delete(person.id);
+      this.apiService.deleteEntry(person).subscribe({
+        next: () => {
+          // Successfully deleted from the backend, now update the UI
+          this.personMap.delete(person.id);
+          console.log('Person deleted:', person);
+        },
+        error: (err) => {
+          console.error('Error deleting person:', err);
+        }
+      });
     }
-    
+     
+    refresh(): void {
+      window.location.reload();
+  }
 
   // deleteEntry(id: number): void {
   //   this.apiService.deleteEntry(id).subscribe(
@@ -79,10 +90,13 @@ export class PersondetailsComponent {
   //     }
   //   );
   // }
-  addPerson(newPerson: Person): void {
-    this.persons.push(newPerson);
+
+
+  
+  addPerson(person: Person) {
+    this.personMap.set(person.id,person);
     this.showForm = false; // Close the form after adding the person
-  }  
+  }
   handleCloseForm() {
     this.showForm = false;  // Close the form
   }
